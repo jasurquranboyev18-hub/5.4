@@ -31,6 +31,10 @@ const Author = new Schema({
         type :String,
         required:true
     }
+},
+{
+    versionKey:false,
+    timestamps:true
 })
 
 
