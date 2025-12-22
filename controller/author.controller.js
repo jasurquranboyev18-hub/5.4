@@ -2,12 +2,27 @@ const AuthorSchema = require("../schema/author.schema");
 
 const getAllAuthor = async (req, res) => {
   try {
-    const author = await AuthorSchema.find();
+    const authors = await AuthorSchema.find();
     res.status(200).json(author);
   } catch (error) {
     console.log(erorr.message);
   }
 };
+
+
+const search = async (req, res) => {
+  try {
+    const {name} = req.queri
+    const searchingResult  = await AuthorSchema.find({
+      full_name:{$regex:name,$options:"i"}
+    });
+    
+    res.status(200).json(searchingResult);
+  } catch (error) {
+    console.log(erorr.message);
+  }
+};
+
 
 const addAuthor = async (req, res) => {
   try {
@@ -63,7 +78,9 @@ const updateAuthor = async (req, res) => {
       birth_year,
       death_year,
       image_url,
-      bio,
+      bio, 
+      genre,
+      period,
       creativity,
       region,
     } = req.body;
@@ -81,6 +98,8 @@ const updateAuthor = async (req, res) => {
       death_year,
       image_url,
       bio,
+      genre,
+      period,
       creativity,
       region,
     });
@@ -115,5 +134,6 @@ module.exports = {
   addAuthor,
   getOneAuthor,
   updateAuthor,
-  deleteAuthor
+  deleteAuthor,
+  search
 };
