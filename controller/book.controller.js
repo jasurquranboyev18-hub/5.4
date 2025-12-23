@@ -35,7 +35,7 @@ const addBook = async (req, res) => {
       message: "Added Book",
     });
   } catch (error) {
-    console.log(erorr.message);
+    console.log(error.message);
   }
 };
 

@@ -3,12 +3,14 @@ const { Schema, model }  = require("mongoose")
 const Author = new Schema({
     full_name:{
         type :String,
-        required: true,
-        unique:true
+        required: [true,"full_name  kiritish shart"],
+        unique:[false,"full_name uiniq bolishi kere"]
     },
     birth_year:{
         type:Number,
-        required:true
+        required:true,
+        max:[new Date().getFullYear()-15,"adib kami 15 yosh bolishi kere"],
+        min:0
     },
     death_year:{
         type:String,

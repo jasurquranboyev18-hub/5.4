@@ -5,24 +5,22 @@ const getAllAuthor = async (req, res) => {
     const authors = await AuthorSchema.find();
     res.status(200).json(author);
   } catch (error) {
-    console.log(erorr.message);
+    console.log(error.message);
   }
 };
-
 
 const search = async (req, res) => {
   try {
-    const {name} = req.queri
-    const searchingResult  = await AuthorSchema.find({
-      full_name:{$regex:name,$options:"i"}
+    const { name } = req.query
+    const searchingResult = await AuthorSchema.find({
+      full_name: { $regex: name, $options: "i" },
     });
-    
+
     res.status(200).json(searchingResult);
   } catch (error) {
-    console.log(erorr.message);
+    console.log(error.message);
   }
 };
-
 
 const addAuthor = async (req, res) => {
   try {
@@ -49,7 +47,7 @@ const addAuthor = async (req, res) => {
       message: "Added author",
     });
   } catch (error) {
-    console.log(erorr.message);
+    console.log(error.message);
   }
 };
 
@@ -66,7 +64,7 @@ const getOneAuthor = async (req, res) => {
 
     res.status(200).json(author);
   } catch (error) {
-    console.log(erorr.message);
+    console.log(error.message);
   }
 };
 
@@ -78,7 +76,7 @@ const updateAuthor = async (req, res) => {
       birth_year,
       death_year,
       image_url,
-      bio, 
+      bio,
       genre,
       period,
       creativity,
@@ -106,13 +104,13 @@ const updateAuthor = async (req, res) => {
 
     res.status(200).json({ message: "Author updete" });
   } catch (error) {
-    console.log(erorr.message);
+    console.log(error.message);
   }
 };
 
 const deleteAuthor = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const author = await AuthorSchema.findById(id);
 
     if (!author) {
@@ -125,7 +123,7 @@ const deleteAuthor = async (req, res) => {
 
     res.status(200).json({ message: "Author delete" });
   } catch (error) {
-    console.log(erorr.message);
+    console.log(error.message);
   }
 };
 
@@ -135,5 +133,5 @@ module.exports = {
   getOneAuthor,
   updateAuthor,
   deleteAuthor,
-  search
+  search,
 };
