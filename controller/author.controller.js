@@ -32,6 +32,7 @@ const addAuthor = async (req, res) => {
       bio,
       creativity,
       region,
+     
     } = req.body;
 
     await AuthorSchema.create({
@@ -42,6 +43,7 @@ const addAuthor = async (req, res) => {
       bio,
       creativity,
       region,
+      
     });
     res.status(201).json({
       message: "Added author",
